@@ -26,6 +26,10 @@ channel_low_list = [7, 13, 15, 29, 31, 33, 36, 37]
 out_list = channel_high_list + channel_low_list
 # OUT_END
 
+# COL
+col_list = [37, 36, 13, 33, 15, 31, 29, 7]
+# COL END
+
 def init_output():
     for channel in out_list:
         GPIO.setup(channel, GPIO.OUT)
@@ -42,26 +46,49 @@ def set_low():
     for channel in channel_low_list:
         GPIO.output(channel, GPIO.LOW)
 
+def set_low_high():
+    for channel in channel_low_list:
+        GPIO.output(channel, GPIO.HIGH)
 
 def set_board():
     GPIO.setmode(GPIO.BOARD)
     GPIO.setwarnings(False)
 
 
-def run():
+def donghua_one():
     try:
+        set_board()
+        init_output()
         while True:
             set_high()
-            time.sleep(3)
+            time.sleep(1)
             set_high_low()
-            time.sleep(3)
+            time.sleep(1)
     except Exception:
         GPIO.cleanup()
     finally:
         GPIO.cleanup()
 
+
+def donghua_two():
+    print 'run donghua two'
+    try:
+        set_board()
+        init_output()
+        for channel in col_list:
+            print 'channel ', channel
+            GPIO.output(channel, GPIO.LOW)
+            time.sleep(1)
+            GPIO.output(channel, GPIO.HIGH)
+            time.sleep(1)
+    except Exception:
+        GPIO.cleanup()
+    finally:
+        GPIO.cleanup()
+
+
+def run():
+    donghua_two()
+
 if __name__ == '__main__':
-    set_board()
-    init_output()
-    set_low()
     run()
