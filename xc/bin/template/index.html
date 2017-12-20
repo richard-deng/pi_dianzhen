@@ -1,0 +1,141 @@
+<html>
+    <head>
+        <title>xiaoche</title>
+    </head>
+    <body>
+        <h1>hello</h1>
+        <input type="text" onkeydown="return noNumbers(event)" />
+	<script src="https://cdn.bootcss.com/jquery/1.12.0/jquery.min.js"></script>
+	<script type="text/javascript">
+
+             function qianjin(){
+                 get_data = Object();
+                 console.log('__qianjin__');
+                 $.ajax({
+                     url: '/xc/qianjin',
+                     type: 'GET',
+                     dataType: 'json',
+                     data: get_data,
+                     success: function(data) {
+                         console.log('__qianjin_success__'); 
+                     },
+                     error: function(data) {
+                         console.log('__qianjin_failed__'); 
+                     }
+                 });
+	     }
+
+             function reverse(){
+                 get_data = Object();
+                 console.log('__reverse__');
+                 $.ajax({
+                     url: '/xc/reverse',
+                     type: 'GET',
+                     dataType: 'json',
+                     data: get_data,
+                     success: function(data) {
+                         console.log('__reverse_success__'); 
+                     },
+                     error: function(data) {
+                         console.log('__reverse_failed__'); 
+                     }
+                 });
+	     }
+
+             function left(){
+                 get_data = Object();
+                 console.log('__left__');
+                 $.ajax({
+                     url: '/xc/left',
+                     type: 'GET',
+                     dataType: 'json',
+                     data: get_data,
+                     success: function(data) {
+                         console.log('__left_success__'); 
+                     },
+                     error: function(data) {
+                         console.log('__left_failed__'); 
+                     }
+                 });
+	     }
+
+             function right(){
+                 get_data = Object();
+                 console.log('__right__');
+                 $.ajax({
+                     url: '/xc/right',
+                     type: 'GET',
+                     dataType: 'json',
+                     data: get_data,
+                     success: function(data) {
+                         console.log('__right_success__'); 
+                     },
+                     error: function(data) {
+                         console.log('__right_failed__'); 
+                     }
+                 });
+	     }
+
+
+             function start(){
+                 get_data = Object();
+                 console.log('__start__');
+                 $.ajax({
+                     url: '/xc/start',
+                     type: 'GET',
+                     dataType: 'json',
+                     data: get_data,
+                     success: function(data) {
+                         console.log('__start_success__'); 
+                     },
+                     error: function(data) {
+                         console.log('__start_failed__'); 
+                     }
+                 });
+             }
+
+
+             function stop(){
+                 get_data = Object();
+                 console.log('__stop__');
+                 $.ajax({
+                     url: '/xc/stop',
+                     type: 'GET',
+                     dataType: 'json',
+                     data: get_data,
+                     success: function(data) {
+                         console.log('__stop_success__'); 
+                     },
+                     error: function(data) {
+                         console.log('__stop_failed__'); 
+                     }
+                 });
+             }
+
+
+	     function noNumbers(e)
+	     {
+	         var keynum;
+	         var keychar;
+
+	         keynum = window.event ? e.keyCode : e.which;
+	         keychar = String.fromCharCode(keynum);
+	         console.log('keynum', keynum);
+		 if(keynum === 37){
+		     left();
+		 } else if(keynum === 38){
+		     qianjin();
+		 } else if(keynum === 39){
+		     right();
+		 } else if(keynum === 40){
+		    reverse();
+		 } else if(keynum === 32){
+	            start();
+		 } else if(keynum === 13){
+		    stop();
+		 }
+	     }
+
+        </script>
+    </body>
+</html>

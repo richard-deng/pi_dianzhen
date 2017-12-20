@@ -114,22 +114,63 @@ def chose_row_col(row, col):
 
 def init_board():
     gpio.setmode(gpio.BOARD)
+    # gpio.setwarnings(gpio.False)
 
 
 def finish():
     gpio.cleanup()
 
 
-def run():
-    # row_1_col_1()
-    row_4_col_8()
-
-
-if __name__ == '__main__':
+def eg_row_col():
     init_board()
     chose_row_col(8, 8)
     on_row_col(8, 8)
     time.sleep(5)
     off_row_col(8, 8)
-    time.sleep(5)
+    time.sleep(1)
     finish()
+
+
+def dong_hua_liushui():
+    try:
+        while True:
+            for row in range(1, 9):
+                for col in range(1, 9):
+                    print row, col
+                    init_board()
+                    chose_row_col(row, col)
+                    on_row_col(row, col)
+                    time.sleep(0.1)
+                    finish()
+            print 'next cycle'
+    except Exception as e:
+        finish()
+    finally:
+        finish()
+
+
+def echo_0():
+   init_board()
+   gpio.setup(row_map[2], gpio.OUT)    
+   gpio.output(row_map[2], gpio.HIGH)    
+   gpio.setup(col_map[4], gpio.OUT)    
+   gpio.output(col_map[4], gpio.LOW)
+   gpio.setup(col_map[5], gpio.OUT)    
+   gpio.output(col_map[5], gpio.LOW)
+   gpio.setup([row_map[3], row_map[4], row_map[5], row_map[6]], gpio.OUT)    
+   gpio.output([row_map[3], row_map[4], row_map[5], row_map[6]], gpio.HIGH)
+   gpio.setup([col_map[3], col_map[6]], gpio.OUT)
+   gpio.output([col_map[3], col_map[6]], gpio.LOW)
+   time.sleep(5)
+   finish()
+
+
+def run():
+    # row_1_col_1()
+    # row_4_col_8()
+    # eg_row_col()
+    dong_hua_liushui()
+    # echo_0()
+
+if __name__ == '__main__':
+    run()
