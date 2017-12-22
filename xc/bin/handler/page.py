@@ -7,7 +7,11 @@ import logging
 log = logging.getLogger()
 
 
-
-class Root(core.Handler):
+class Pc(core.Handler):
     def GET(self):
-        self.write(template.render('index.html'))
+        self.write(template.render('pc.html'))
+
+
+class Wap(core.Handler):
+    def GET(self):
+        self.write(template.render('wap.html'))

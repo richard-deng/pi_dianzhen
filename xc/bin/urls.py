@@ -18,7 +18,8 @@ urls = (
 
 
     # 页面
-    ('^/xc/index.html$', page.Root),
+    ('^/xc/page/pc/index.html$', page.Pc),
+    ('^/xc/page/wap/index.html$', page.Wap),
 
 )
 
