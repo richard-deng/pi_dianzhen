@@ -9,43 +9,49 @@ class Ping(core.Handler):
 
 class QianJin(core.Handler):
     def GET(self):
+        self.set_headers({'Content-Type': 'application/json; charset=UTF-8'})
         print 'qianjin'
         qianjin()
-        self.write('OK')
+        return self.write('OK')
 
 
 class Reverse(core.Handler):
     def GET(self):
+        self.set_headers({'Content-Type': 'application/json; charset=UTF-8'})
         print 'reverse'
         reverse()
-        self.write('OK')
+        return self.write('OK')
 
 
 class Left(core.Handler):
     def GET(self):
+        self.set_headers({'Content-Type': 'application/json; charset=UTF-8'})
         print 'left'
         left()
-        self.write('OK')
+        return self.write('OK')
 
 
 class Right(core.Handler):
     def GET(self):
+        self.set_headers({'Content-Type': 'application/json; charset=UTF-8'})
         print 'right'
         right()
-        self.write('OK')
+        return self.write('OK')
 
 
 class Stop(core.Handler):
     def GET(self):
+        self.set_headers({'Content-Type': 'application/json; charset=UTF-8'})
         print 'stop'
         reset()
         finish()
-        self.write('OK')
+        return self.write('OK')
 
 
 class Start(core.Handler):
     def GET(self):
+        self.set_headers({'Content-Type': 'application/json; charset=UTF-8'})
         print 'prepare'
         init_board()
         out_put()
-        self.write('OK')
+        return self.write('OK')
