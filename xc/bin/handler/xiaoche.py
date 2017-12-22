@@ -1,6 +1,10 @@
 # coding: utf-8
-from driver import *
 from zbase.web import core
+from driver import (
+    qianjin, reverse, left, right,
+    reset, finish, init_board, out_put
+)
+
 
 class Ping(core.Handler):
     def GET(self):
