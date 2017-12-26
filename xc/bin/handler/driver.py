@@ -12,9 +12,28 @@ C2 = 18
 D1 = 29
 D2 = 31
 
-HP = 7
+HW = 22
+FM = 7
 
 arr = [A1, A2, B1, B2, C1, C2, D1, D2]
+
+
+def init_hw():
+    gpio.setup(HW, gpio.IN)
+
+
+def init_fm():
+    gpio.setup(FM, gpio.OUT)
+    gpio.output(FM, gpio.HIGH)
+
+
+def enable_fm():
+    gpio.output(FM, gpio.LOW)
+
+
+def reset_fm():
+    gpio.output(FM, gpio.HIGH)
+
 
 def init_board():
     gpio.setmode(gpio.BOARD)
@@ -24,18 +43,15 @@ def out_put():
     for pin in arr:
         gpio.setup(pin, gpio.OUT)
 
+
 def reset():
     for pin in arr:
         gpio.output(pin, gpio.HIGH)
 
-def in_set():
-    gpio.setup(HP, gpio.IN)
 
-
-def read_hp():
-    v = gpio.input(HP)
+def read_hw():
+    v = gpio.input(HW)
     return v
-
 
 def motor_a():
     gpio.output(A1, gpio.HIGH)
@@ -83,6 +99,7 @@ def finish():
 
 def qianjin():
     try:
+        reset()
         motor_a()
         motor_b()
         motor_c()
@@ -94,6 +111,7 @@ def qianjin():
 
 def reverse():
     try:
+        reset()
         motor_reverse_a()
         motor_reverse_b()
         motor_reverse_c()
@@ -105,6 +123,7 @@ def reverse():
 
 def left():
     try:
+        reset()
         motor_a()
         motor_c()
     except Exception as e:
@@ -114,6 +133,7 @@ def left():
 
 def right():
     try:
+        reset()
         motor_b()
         motor_d()
     except Exception as e:
